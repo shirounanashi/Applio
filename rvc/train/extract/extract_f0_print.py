@@ -27,7 +27,7 @@ class FeatureInput:
     def __init__(self, sample_rate=16000, hop_size=160):
         self.fs = sample_rate
         self.hop = hop_size
-
+        self.device = "cuda"
         self.f0_method_dict = self.get_f0_method_dict()
 
         self.f0_bin = 256
