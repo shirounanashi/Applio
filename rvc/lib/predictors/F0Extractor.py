@@ -70,7 +70,7 @@ class F0Extractor:
                 hop_length=80,
             )
         elif method == "crepe":
-            wav16k_torch = torch.FloatTensor(self.wav16k).unsqueeze(0).to(config.device)
+            wav16k_torch = torch.FloatTensor(self.wav16k).unsqueeze(0).to("cuda")
             f0 = torchcrepe.predict(
                 wav16k_torch,
                 sample_rate=16000,
@@ -78,7 +78,7 @@ class F0Extractor:
                 batch_size=512,
                 fmin=self.f0_min,
                 fmax=self.f0_max,
-                device=config.device,
+                device="cuda",
             )
             f0 = f0[0].cpu().numpy()
         elif method == "fcpe":
